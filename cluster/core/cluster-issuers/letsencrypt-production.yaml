@@ -16,7 +16,7 @@ spec:
           tsigAlgorithm: hmac-sha256
           tsigSecretSecretRef:
             name: dns_tsig_key
-            key: tsig_secret
+            key: SECRET_TSIG_KEY
         selector:
           dnsZones:
             - ${SECRET_DOMAIN}
