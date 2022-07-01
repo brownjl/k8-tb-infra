@@ -1,0 +1,17 @@
+---
+version: "3"
+
+vars:
+  PROJECT_DIR:
+    sh: "git  rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+  
+dotenv: [".config.env"]
+
+env:
+  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
+
+includes:
+  cluster: .taskfiles/ClusterTasks.yml
+  precommit: .taskfiles/PrecommitTasks.yml
+  
