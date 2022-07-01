@@ -12,11 +12,11 @@ spec:
     solvers:
       - dns01:
           nameserver: "${PRIVATE_DNS_PRIMARY}"
-            tsigKeyName: externaldns
-            tsigAlgorithm: hmac-sha256
-            tsigSecretSecretRef:
-              name: dns_tsig_key
-              key: tsig_secret
+          tsigKeyName: externaldns
+          tsigAlgorithm: hmac-sha256
+          tsigSecretSecretRef:
+            name: dns_tsig_key
+            key: tsig_secret
         selector:
           dnsZones:
             - ${SECRET_DOMAIN}
