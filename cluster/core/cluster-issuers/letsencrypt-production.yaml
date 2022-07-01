@@ -14,7 +14,7 @@ spec:
           rfc2136:
             nameserver: "${PRIVATE_DNS_PRIMARY}"
             tsigKeyName: externaldns
-            tsigAlgorithm: hmac-sha256
+            tsigAlgorithm: HMACSHA256
             tsigSecretSecretRef:
               name: dns-tsig-key
               key: tsig-key
