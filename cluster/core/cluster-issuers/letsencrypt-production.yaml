@@ -4,6 +4,10 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-production
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: "${SECRET_EMAIL}"
@@ -11,11 +15,13 @@ spec:
       name: letsencrypt-production
     solvers:
       - dns01:
-          cloudflare:
-            email: "${SECRET_EMAIL}"
-            apiKeySecretRef:
-              name: cloudflare-api-key
-              key: api-key
+          rfc2136:
+            nameserver: "${PRIVATE_DNS_PRIMARY}"
+            tsigKeyName: externaldns
+            tsigAlgorithm: hmac-sha256
+            tsigSecretSecretRef:
+              name: dns-tsig-key
+              key: tsig-key
         selector:
           dnsZones:
             - ${SECRET_DOMAIN}
