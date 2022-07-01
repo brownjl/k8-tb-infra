@@ -4,6 +4,10 @@ kind: ClusterIssuer
 metadata:
   name: letsencrypt-production
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     email: "${SECRET_EMAIL}"
