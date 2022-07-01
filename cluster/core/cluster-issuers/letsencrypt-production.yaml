@@ -11,12 +11,13 @@ spec:
       name: letsencrypt-production
     solvers:
       - dns01:
-          nameserver: "${PRIVATE_DNS_PRIMARY}"
-          tsigKeyName: externaldns
-          tsigAlgorithm: hmac-sha256
-          tsigSecretSecretRef:
-            name: dns_tsig_key
-            key: SECRET_TSIG_KEY
+          rfc2136:
+            nameserver: "${PRIVATE_DNS_PRIMARY}"
+            tsigKeyName: externaldns
+            tsigAlgorithm: hmac-sha256
+            tsigSecretSecretRef:
+              name: dns_tsig_key
+              key: SECRET_TSIG_KEY
         selector:
           dnsZones:
             - ${SECRET_DOMAIN}
