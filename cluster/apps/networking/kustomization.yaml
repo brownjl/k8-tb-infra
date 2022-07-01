@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - error-pages
-  - cloudflare-ddns
-  - external-dns
   - internal-dns
   - metallb
   - k8s-gateway
