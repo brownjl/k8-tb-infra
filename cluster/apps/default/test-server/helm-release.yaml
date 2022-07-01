@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app echo-server
+  name: &app test-server
   namespace: default
 spec:
   interval: 15m
@@ -74,8 +74,6 @@ spec:
         ingressClassName: "traefik"
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
-          external-dns.alpha.kubernetes.io/hostname: "echo-server.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: "internal-only@kubernetescrd"
         hosts:
@@ -86,7 +84,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "echo-server-tls"
+            secretName: "test-server-tls"
     resources:
       requests:
         cpu: 50m
